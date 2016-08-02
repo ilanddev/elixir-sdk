@@ -42,7 +42,7 @@ defmodule Iland.Token do
 
   defp replace_token do
     token = get_new_token
-    Agent.get_and_update(__MODULE__, fn(token) -> {token, token} end)
+    Agent.get_and_update(__MODULE__, fn(_) -> {token, token} end)
   end
 
   defp get_new_token do
