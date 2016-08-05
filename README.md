@@ -13,6 +13,8 @@ library is intended to make it even easier for Elixir programmers to use.
 
 ## Installation
 
+  The iland package is available on [Hex](https://hex.pm/packages/iland)
+
   1. Add `iland` to your list of dependencies in `mix.exs`:
 
     ```elixir
