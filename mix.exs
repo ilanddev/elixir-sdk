@@ -43,7 +43,9 @@ defmodule Iland.Mixfile do
   defp deps do
     [{:httpoison, "~> 0.9.0"},
      {:poison, "~> 2.0"},
-     {:timex, "~> 3.0"}]
+     {:timex, "~> 3.0"},
+     {:ex_doc, "~> 0.12", only: :dev}
+    ]
   end
 
 end
