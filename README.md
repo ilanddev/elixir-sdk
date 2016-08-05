@@ -13,8 +13,6 @@ library is intended to make it even easier for Elixir programmers to use.
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
-
   1. Add `iland` to your list of dependencies in `mix.exs`:
 
     ```elixir
@@ -31,6 +29,8 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
     end
     ```
 
+  3. Run `$ mix deps.get`
+
 ## Getting the code
 
 The code is hosted at https://github.com/ilanddev/elixir-sdk
@@ -38,8 +38,8 @@ The code is hosted at https://github.com/ilanddev/elixir-sdk
 Check out the latest development version anonymously with:
 
 ```
-git clone https://github.com/ilanddev/elixir-sdk
-cd elixir-sdk
+$ git clone https://github.com/ilanddev/elixir-sdk
+$ cd elixir-sdk
 ```
 
 
