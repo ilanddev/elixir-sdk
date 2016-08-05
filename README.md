@@ -37,8 +37,9 @@ The code is hosted at https://github.com/ilanddev/elixir-sdk
 
 Check out the latest development version anonymously with:
 
-```git clone https://github.com/ilanddev/elixir-sdk
-   cd elixir-sdk
+```
+git clone https://github.com/ilanddev/elixir-sdk
+cd elixir-sdk
 ```
 
 
