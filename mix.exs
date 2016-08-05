@@ -3,12 +3,14 @@ defmodule Iland.Mixfile do
 
   def project do
     [app: :iland,
+     description: "Elixir SDK for the iland cloud api (https://api.ilandcloud.com)",
      version: "0.1.0",
      elixir: "~> 1.3",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      name: "Iland Cloud Elixir SDK",
      source_url: "https://github.com/ilanddev/elixir-sdk",
+     package: package(),
      deps: deps()]
   end
 
@@ -18,6 +20,15 @@ defmodule Iland.Mixfile do
   def application do
     [applications: [:logger, :httpoison, :timex],
      mod: {Iland, []}]
+  end
+
+  defp package do
+    [
+      name: :iland,
+      maintainers: ["Brett Snyder"],
+      licenses: ["BSD"],
+      links: %{"Github" => "https://github.com/ilanddev/elixir-sdk"}
+    ]
   end
 
   # Dependencies can be Hex packages:
