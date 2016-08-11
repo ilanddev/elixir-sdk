@@ -2,6 +2,11 @@
 
 **An Elixir SDK for the iland cloud API.**
 
+![build status](http://img.shields.io/travis/ilanddev/elixir-sdk/master.svg?style=flat)
+![license](http://img.shields.io/hexpm/l/iland.svg?style=flat)
+![version](http://img.shields.io/hexpm/v/iland.svg?style=flat)
+![downloads](http://img.shields.io/hexpm/dt/iland.svg?style=flat)
+
 ## Introduction
 
 The iland cloud Elxiir SDK provides a wrapper around the
