@@ -24,7 +24,7 @@ defmodule Iland.Token do
   defstruct [:access_token, :expires_in, :expires_at, :refresh_token]
 
   def start_link do
-    Agent.start_link(fn -> get_new_token end, [name: __MODULE__])
+    Agent.start_link(fn -> nil end, [name: __MODULE__])
   end
 
   @doc """
@@ -32,11 +32,15 @@ defmodule Iland.Token do
   """
   def get do
     old_token = Agent.get(__MODULE__, fn(token) -> token end)
-    expire = old_token.expires_at
-    cond do
-      Timex.before?(Timex.shift(Timex.now, minutes: 5), expire) -> old_token
-      Timex.before?(Timex.now, expire) -> refresh_token(old_token)
-      true -> replace_token
+    if old_token == nil do
+      replace_token
+    else
+      expire = old_token.expires_at
+      cond do
+        Timex.before?(Timex.shift(Timex.now, minutes: 5), expire) -> old_token
+        Timex.before?(Timex.now, expire) -> refresh_token(old_token)
+        true -> replace_token
+      end
     end
   end
 
