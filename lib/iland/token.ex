@@ -57,7 +57,8 @@ defmodule Iland.Token do
             password: @password,
             grant_type: @new_token_grant,
             "Content-type": "application/x-www-form-urlencoded"]
-    HTTPoison.post(@token_url, {:form, form})
+    @token_url
+    |> HTTPoison.post({:form, form})
     |> Iland.Response.handle_response
     |> extract_token
     |> add_token_expiration
@@ -76,7 +77,8 @@ defmodule Iland.Token do
             refresh_token: token.refresh_token,
             "Content-type": "application/x-www-form-urlencoded"]
     Logger.info "refreshing iland API token"
-    refreshed = HTTPoison.post(@refresh_url, {:form, form})
+    refreshed = @refresh_url
+            |> HTTPoison.post({:form, form})
             |> Iland.Response.handle_response
             |> extract_token
             |> add_token_expiration
@@ -84,7 +86,8 @@ defmodule Iland.Token do
   end
 
   defp extract_token(response) do
-    elem(response, 1)
+    response
+    |> elem(1)
     |> Poison.decode!(as: %Iland.Token{})
   end
 

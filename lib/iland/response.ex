@@ -29,9 +29,10 @@ defmodule Iland.Response do
   end
 
   defp strip_json_hijacking_prefix(body) do
-    cond do
-     String.starts_with?(body, ")]}'\n") -> String.slice(body, 5..-1)
-     true -> body
+    if String.starts_with?(body, ")]}'\n") do
+      String.slice(body, 5..-1)
+    else
+      body
     end
   end
 

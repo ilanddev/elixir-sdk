@@ -1,7 +1,12 @@
 defmodule Iland do
   use Application
 
-   # See http://elixir-lang.org/docs/stable/elixir/Application.html
+  @moduledoc """
+  Provides a basic API wrapper for accessing the iland cloud API.
+  The package handles API token retrieval and renewal behind the scenes.
+  """
+
+  # See http://elixir-lang.org/docs/stable/elixir/Application.html
   # for more information on OTP Applications
   def start(_type, _args) do
     import Supervisor.Spec, warn: false
