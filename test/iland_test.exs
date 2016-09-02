@@ -41,6 +41,10 @@ defmodule IlandTest do
     assert Response.handle_response({:error, %{status_code: 404, body: "hello"}}) == {:error, "hello"}
   end
 
+  test "handle HTTPoison error" do
+    assert Response.handle_response({:error, %HTTPoison.Error{ reason: "httpoison reason"}}) == {:error, "httpoison reason"}
+  end
+
   test "handle 200 with JSON hijacking prefix" do
     assert Response.handle_response({:ok, %{status_code: 200, body: ")]}'\nhello"}}) == {:ok, "hello"}
   end
