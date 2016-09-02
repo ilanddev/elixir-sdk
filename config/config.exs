@@ -29,10 +29,10 @@ config :logger, level: :info
 #
 #     import_config "#{Mix.env}.exs"
 config :iland, api_base_url: "https://api.ilandcloud.com/ecs"
-config :iland, access_url: "https://ecs.ilandcloud.com/auth/realms/iland-core/tokens/grants/access"
+config :iland, access_url: "https://ecs.ilandcloud.com/auth/realms/iland-core/protocol/openid-connect/token"
 config :iland, new_token_grant: "password"
 config :iland, refresh_token_grant: "refresh_token"
-config :iland, refresh_url: "https://ecs.ilandcloud.com/auth/realms/iland-core/tokens/refresh"
+config :iland, refresh_url: "https://ecs.ilandcloud.com/auth/realms/iland-core/protocol/openid-connect/token"
 config :iland, accept_type: "application/json"
 config :iland, content_type: "application/json"
 config :iland, client_id: System.get_env("ILAND_CLIENT_ID")
