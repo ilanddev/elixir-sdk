@@ -2,6 +2,7 @@ defmodule IlandTest do
   use ExUnit.Case
   alias Iland.Api
   alias Iland.Response
+  import Mock
 
   doctest Iland
 
@@ -47,6 +48,14 @@ defmodule IlandTest do
 
   test "handle 200 with JSON hijacking prefix" do
     assert Response.handle_response({:ok, %{status_code: 200, body: ")]}'\nhello"}}) == {:ok, "hello"}
+  end
+
+  test "test get new token" do
+    with_mock HTTPoison, [post: fn(_, _) -> {:ok, %{status_code: 200, body: "{\"expires_in\":900}"}} end] do
+      token = Iland.Token.get
+      # Tests that make the expected call
+      assert token.expires_in == 900
+    end
   end
 
 end
