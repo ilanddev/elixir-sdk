@@ -75,6 +75,21 @@ defmodule IlandTest do
     end
   end
 
+  test "test use current good token" do
+    with_mocks ([
+      {HTTPoison,
+        [],
+        [post: fn(_, _) -> {:ok, %{status_code: 200, body: "{\"expires_in\":900}"}} end] },
+      {Agent,
+        [],
+        [get: fn(_,_) -> %Token{expires_in: 600, expires_at: Timex.shift(Timex.now, minutes: 10)} end ]}
+    ]) do
+      token = Token.get
+      # Tests that make the expected call
+      assert token.expires_in == 600
+    end
+  end
+
   test "test refresh token" do
     with_mocks ([
       {HTTPoison,
@@ -83,6 +98,22 @@ defmodule IlandTest do
       {Agent,
         [],
         [get: fn(_,_) -> %Token{expires_at: Timex.shift(Timex.now, minutes: 4)} end,
+         get_and_update: fn(_,_) -> %Token{expires_in: 900} end]}
+    ]) do
+      token = Token.get
+      # Tests that make the expected call
+      assert token.expires_in == 900
+    end
+  end
+
+  test "test replace expired token" do
+    with_mocks ([
+      {HTTPoison,
+        [],
+        [post: fn(_, _) -> {:ok, %{status_code: 200, body: "{\"expires_in\":900}"}} end] },
+      {Agent,
+        [],
+        [get: fn(_,_) -> %Token{expires_at: Timex.shift(Timex.now, minutes: -1)} end,
          get_and_update: fn(_,_) -> %Token{expires_in: 900} end]}
     ]) do
       token = Token.get
