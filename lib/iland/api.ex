@@ -34,39 +34,40 @@ defmodule Iland.Api do
      "{\"deleted\":false,\"description\":\"\",\"fullname\":\"Test Man\",\"name\":\"testman\",\"vcloud_href\":\"https://man01.ilandcloud.com/api/admin/user/aaa7d338-7dbe-4aca-b903-69ad98fa4df9\",\"email\":\"fake@iland.com\",\"phone\":\"867-867-5309\",\"im\":\"\",\"type\":\"LDAP\",\"user_role_type\":\"ORGANIZATION\",\"active\":true,\"locked\":false,\"address\":\"\",\"company\":\"iland\",\"city\":\"\",\"state\":\"\",\"zip\":\"\",\"country\":\"United States\"}"}
 
   """
-  def get(rel_path) do
-    request(:get, rel_path)
+  def get(rel_path, accept_header \\ @accept_type) do
+    request(:get, rel_path, accept_header)
   end
 
   @doc """
   Perform a POST request against the iland cloud API.
   """
-  def post(rel_path, body \\ "") do
-    request(:post, rel_path, body)
+  def post(rel_path, body \\ "", accept_header \\ @accept_type) do
+    request(:post, rel_path, accept_header, body)
   end
 
   @doc """
   Perform a PUT request against the iland cloud API.
   """
-  def put(rel_path, body \\ "") do
-    request(:put, rel_path, body)
+  def put(rel_path, body \\ "", accept_header \\ @accept_type) do
+    request(:put, rel_path, accept_header, body)
   end
 
   @doc """
   Perform a DELETE request against the iland cloud API.
   """
-  def delete(rel_path) do
-    request(:delete, rel_path)
+  def delete(rel_path, accept_header \\ @accept_type) do
+    request(:delete, accept_header, rel_path)
   end
 
   @doc """
   Perform a HTTP request against the iland cloud API, using the supplied
   HTTP method, headers, and options.
   """
-  def request(method, rel_path, body \\ "", headers \\ [], opts \\ []) do
+  def request(method, rel_path, accept_header \\ @accept_type, body \\ "", headers \\ [], opts \\ []) do
     url = iland_url(rel_path)
     Logger.info "#{String.upcase(to_string(method))} to #{url}"
     headers = headers |> add_headers
+    headers = headers ++ [{"Accept", accept_header}]
     method
     |> HTTPoison.request(url, body, headers, opts)
     |> Iland.Response.handle_response
@@ -79,8 +80,7 @@ defmodule Iland.Api do
   def add_headers(headers \\ []) do
     [
      {"Authorization", "Bearer " <> Iland.Token.get.access_token},
-     {"Content-Type", @content_type},
-     {"Accept", @accept_type}
+     {"Content-Type", @content_type}
     ] ++ headers
   end
 
