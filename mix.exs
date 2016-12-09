@@ -4,7 +4,7 @@ defmodule Iland.Mixfile do
   def project do
     [app: :iland,
      description: "Elixir SDK for the iland cloud api (https://api.ilandcloud.com)",
-     version: "0.1.1",
+     version: "0.1.2",
      elixir: "~> 1.3",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
@@ -47,7 +47,7 @@ defmodule Iland.Mixfile do
      {:poison, "~> 2.0"},
      {:timex, "~> 3.0"},
      {:ex_doc, "~> 0.12", only: :dev},
-     {:mock, "~> 0.2.0", git: "https://github.com/jjh42/mock.git"},
+     {:mock, "~> 0.2.0", git: "https://github.com/jjh42/mock.git", only: :test},
      {:excoveralls, "~> 0.5", only: :test},
      {:credo, "~> 0.4", only: [:dev, :test]}
     ]
