@@ -47,7 +47,7 @@ defmodule Iland.Mixfile do
      {:poison, "~> 2.0"},
      {:timex, "~> 3.0"},
      {:ex_doc, "~> 0.12", only: :dev},
-     {:mock, "~> 0.1.4", git: "https://github.com/jjh42/mock.git"},
+     {:mock, "~> 0.2.0", git: "https://github.com/jjh42/mock.git"},
      {:excoveralls, "~> 0.5", only: :test},
      {:credo, "~> 0.4", only: [:dev, :test]}
     ]
