@@ -1,6 +1,7 @@
 defmodule Iland.Api do
 
   require Logger
+  alias Iland.{Response, Token}
 
   @moduledoc """
   Provides a basic API wrapper for accessing the iland cloud API.
@@ -70,7 +71,7 @@ defmodule Iland.Api do
     headers = headers ++ [{"Accept", accept_header}]
     method
     |> HTTPoison.request(url, body, headers, opts)
-    |> Iland.Response.handle_response
+    |> Response.handle_response
   end
 
   @doc """
@@ -79,7 +80,7 @@ defmodule Iland.Api do
   """
   def add_headers(headers \\ []) do
     [
-     {"Authorization", "Bearer " <> Iland.Token.get.access_token},
+     {"Authorization", "Bearer " <> Token.get.access_token},
      {"Content-Type", @content_type}
     ] ++ headers
   end

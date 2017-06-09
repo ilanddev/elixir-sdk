@@ -1,6 +1,7 @@
 defmodule Iland.Token do
 
   require Logger
+  alias Iland.{Response, Token}
 
   @moduledoc """
   Handles iland cloud API authorization token retrieval and management.
@@ -59,7 +60,7 @@ defmodule Iland.Token do
             "Content-type": "application/x-www-form-urlencoded"]
     @token_url
     |> HTTPoison.post({:form, form})
-    |> Iland.Response.handle_response
+    |> Response.handle_response
     |> extract_token
     |> add_token_expiration
   end
@@ -79,7 +80,7 @@ defmodule Iland.Token do
     Logger.info "refreshing iland API token"
     refreshed = @refresh_url
             |> HTTPoison.post({:form, form})
-            |> Iland.Response.handle_response
+            |> Response.handle_response
             |> extract_token
             |> add_token_expiration
     Agent.get_and_update(__MODULE__, fn(_token) -> {refreshed, refreshed} end)
@@ -88,7 +89,7 @@ defmodule Iland.Token do
   defp extract_token(response) do
     response
     |> elem(1)
-    |> Poison.decode!(as: %Iland.Token{})
+    |> Poison.decode!(as: %Token{})
   end
 
 end
