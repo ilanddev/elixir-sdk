@@ -34,19 +34,19 @@ defmodule Iland.Token do
   def get do
     old_token = Agent.get(__MODULE__, fn(token) -> token end)
     if old_token == nil do
-      replace_token
+      replace_token()
     else
       expire = old_token.expires_at
       cond do
         Timex.before?(Timex.shift(Timex.now, minutes: 5), expire) -> old_token
         Timex.before?(Timex.now, expire) -> refresh_token(old_token)
-        true -> replace_token
+        true -> replace_token()
       end
     end
   end
 
   defp replace_token do
-    token = get_new_token
+    token = get_new_token()
     Agent.get_and_update(__MODULE__, fn(_) -> {token, token} end)
   end
 
