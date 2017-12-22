@@ -43,12 +43,12 @@ defmodule Iland.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    [{:httpoison, "~> 0.11.0"},
+    [{:httpoison, "~> 0.11.2"},
      {:poison, "~> 3.1.0"},
      {:timex, "~> 3.0"},
      {:ex_doc, "~> 0.12", only: :dev},
-     {:mock, "~> 0.2.0", git: "https://github.com/jjh42/mock.git", only: :test},
-     {:excoveralls, "~> 0.5", only: :test},
+     {:mock, "~> 0.3.1", git: "https://github.com/jjh42/mock.git", only: :test},
+     {:excoveralls, "~> 0.7", only: :test},
      {:credo, "~> 0.8", only: [:dev, :test], runtime: false}
     ]
   end
