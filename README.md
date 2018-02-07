@@ -25,7 +25,7 @@ library is intended to make it even easier for Elixir programmers to use.
 
     ```elixir
     def deps do
-      [{:iland, "~> 0.1.7"}]
+      [{:iland, "~> 0.1.8"}]
     end
     ```
 
