@@ -33,8 +33,8 @@ config :iland, access_url: "https://console.ilandcloud.com/auth/realms/iland-cor
 config :iland, new_token_grant: "password"
 config :iland, refresh_token_grant: "refresh_token"
 config :iland, refresh_url: "https://console.ilandcloud.com/auth/realms/iland-core/protocol/openid-connect/token"
-config :iland, accept_type: "application/json"
-config :iland, content_type: "application/json"
+config :iland, accept_type: "application/vnd.ilandcloud.api.v0.9+json"
+config :iland, content_type: "application/vnd.ilandcloud.api.v0.9+json"
 config :iland, client_id: System.get_env("ILAND_CLIENT_ID")
 config :iland, client_secret: System.get_env("ILAND_CLIENT_SECRET")
 config :iland, username: System.get_env("ILAND_USERNAME")
