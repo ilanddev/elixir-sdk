@@ -43,7 +43,7 @@ defmodule Iland.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    [{:httpoison, "~> 0.11.2"},
+    [{:httpoison, "~> 1.2.0"},
      {:poison, "~> 3.1.0"},
      {:timex, "~> 3.0"},
      {:ex_doc, "~> 0.12", only: :dev},
